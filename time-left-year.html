@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Time Left in This Year</title>
+  <style>
+    body {
+      margin: 0;
+      background: transparent;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #e5e7eb;
+    }
+    .box {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    .time {
+      font-size: 28px;
+      font-weight: 700;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div>Left in This Year</div>
+    <div class="time" id="time"></div>
+  </div>
+
+  <script>
+    function update() {
+      const now = new Date();
+      const end = new Date(now.getFullYear() + 1, 0, 1);
+      let diff = end - now;
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff %= 1000 * 60 * 60 * 24;
+      const h = Math.floor(diff / (1000 * 60 * 60));
+      diff %= 1000 * 60 * 60;
+      const m = Math.floor(diff / (1000 * 60));
+      const s = Math.floor(diff / 1000);
+
+      document.getElementById("time").textContent =
+        `${d}d ${h}h ${m}m ${s}s`;
+    }
+
+    update();
+    setInterval(update, 1000);
+  </script>
+</body>
+</html>
